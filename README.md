@@ -1,0 +1,1 @@
+Some scripts for asus_g46's owners
