@@ -1,0 +1,10 @@
+#!/bin/sh
+#switch wlan on or off
+#NOTE : iwconfig is a depedencies, or you can modify this script and add your wlan interface name
+curr_val=$(cat /sys/class/leds/asus\:\:wlan/brightness)
+iwconfig 1>/tmp/iwconfig 2>/dev/null
+wlan_iface=$(head -n1 /tmp/iwconfig | sed 's/\ .*//')
+if (($curr_val > 0))
+then echo "0">/sys/class/leds/asus\:\:wlan/brightness && ip link set $wlan_iface down
+else echo "1">/sys/class/leds/asus\:\:wlan/brightness && ip link set $wlan_iface up
+fi
