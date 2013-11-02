@@ -1,0 +1,7 @@
+#!/bin/sh
+#decrease brightness by 100 on asus G46VW
+curr_bright=$(cat /sys/class/backlight/intel_backlight/actual_brightness)
+new_bright=$(($curr_bright-100))
+if (($new_bright >= 0))
+then echo "$new_bright">/sys/class/backlight/intel_backlight/brightness
+fi
