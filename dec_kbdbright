@@ -1,0 +1,8 @@
+#!/bin/sh
+#decrease keyboard brightness by 1 on asus G46VW
+#NOTE : you have to load asus-nb-wmi on boot
+curr_bright=$(cat /sys/class/leds/asus\:\:kbd_backlight/brightness)
+new_bright=$(($curr_bright-1))
+if (($new_bright >= 0))
+then echo "$new_bright">/sys/class/leds/asus\:\:kbd_backlight/brightness
+fi
